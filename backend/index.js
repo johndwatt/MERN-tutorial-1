@@ -23,12 +23,16 @@ mongoose.connection.on('disconnected', () => {
     console.log('\x1B[44m%s\x1b[0m', '=== MongoDB disconnected ===');
 });
 
+// require logger
+app.use(require("./utils/logger"));
+
 // require routes
 const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
 
 app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);
+
 
 app.listen(PORT, () => {
     console.log(`Server is live on port: ${PORT}`);
